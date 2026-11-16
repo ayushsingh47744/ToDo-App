@@ -1,51 +1,43 @@
-# React + Express Todo App
+# Todo App
 
-Basic full-stack app: React (Vite) frontend + Express backend.
+A full-stack todo application built with React, Express and MongoDB. It lets you manage a simple task list from the browser, and every change is saved in a database.
 
-## Folder structure
+## What It Does
+
+- Add new tasks
+- Mark tasks as done or not done
+- Delete tasks
+- Saves all tasks in MongoDB (Atlas), so they are still there after a restart
+
+## Tech Stack
+
+- **Frontend:** React 18, Vite
+- **Backend:** Node.js, Express
+- **Database:** MongoDB Atlas with Mongoose
+
+## Where It Runs
+
+| Part     | URL                     | Port |
+|----------|-------------------------|------|
+| Frontend | http://localhost:5173   | 5173 |
+| Backend  | http://localhost:5000   | 5000 |
+
+The frontend sends its `/api` requests to the backend on port 5000 through the Vite dev proxy. The main API route is `http://localhost:5000/api/todos`.
+
+## Project Structure
 
 ```
-react-basic-app/
-├── backend/        # Express API (port 5000)
-│   ├── server.js
-│   └── package.json
-└── frontend/       # React + Vite (port 5173)
+ToDo-App/
+├── backend/
+│   ├── server.js          # Express server, Mongoose model and API routes
+│   ├── package.json
+│   └── .env               # Environment variables (not committed)
+└── frontend/
     ├── index.html
-    ├── vite.config.js
+    ├── vite.config.js     # Vite config and /api proxy to the backend
     ├── package.json
     └── src/
-        ├── main.jsx
-        ├── App.jsx
-        └── App.css
+        ├── main.jsx       # React entry point
+        ├── App.jsx        # Main component: UI and API calls
+        └── App.css        # Styles
 ```
-
-## Run karne ka tarika
-
-Do terminals kholo.
-
-**Terminal 1 — Backend**
-```bash
-cd backend
-npm install
-npm start
-```
-
-**Terminal 2 — Frontend**
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-Browser me kholo: http://localhost:5173
-
-## API endpoints
-
-| Method | Route            | Kaam              |
-|--------|------------------|-------------------|
-| GET    | /api/todos       | Saare todos       |
-| POST   | /api/todos       | Naya todo         |
-| PUT    | /api/todos/:id   | Update (done/text)|
-| DELETE | /api/todos/:id   | Delete            |
-
-Note: Data in-memory hai, server restart pe reset ho jata hai. Persistent chahiye to MongoDB/SQLite add kar sakte ho.
